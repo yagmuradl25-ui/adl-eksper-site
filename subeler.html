@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Şubelerimiz — ADL EKSPER</title>
+  <meta name="description" content="ADL EKSPER şubeleri ve iletişim bilgileri." />
+  <link rel="icon" href="assets/favicon.ico" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900">
+  <header class="bg-black text-white">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-semibold">ADL EKSPER</a>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold">Şubelerimiz</h1>
+    <p class="mt-2 text-gray-600">Tüm şubelerimiz ve çalışma saatleri</p>
+
+    <div class="mt-6 grid md:grid-cols-2 gap-6">
+      <div class="p-4 border rounded">
+        <h3 class="font-semibold">Ankara Şubesi</h3>
+        <p class="text-sm text-gray-600 mt-1">Adres: Örnek Mah. 123, Ankara</p>
+        <p class="text-sm text-gray-600">Tel: <a href="tel:+905551234567" class="text-brand">+90 555 123 45 67</a></p>
+      </div>
+
+      <div class="p-4 border rounded">
+        <h3 class="font-semibold">İstanbul Şubesi</h3>
+        <p class="text-sm text-gray-600 mt-1">Adres: Örnek Cad. 45, İstanbul</p>
+        <p class="text-sm text-gray-600">Tel: <a href="tel:+905559876543" class="text-brand">+90 555 987 65 43</a></p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-black text-white py-6 text-center">© <span id="year">2026</span> ADL EKSPER</footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

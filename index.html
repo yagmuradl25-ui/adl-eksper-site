@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ADL EKSPER — Araç Ekspertiz Hizmetleri</title>
+  <meta name="description" content="ADL EKSPER - Profesyonel araç ekspertiz hizmetleri. Full paket, motor ekspertizi, kaporta boya, airbag kontrol ve daha fazlası." />
+  <meta property="og:title" content="ADL EKSPER — Araç Ekspertiz Hizmetleri" />
+  <meta property="og:description" content="Profesyonel araç ekspertiz hizmetleri. Hızlı, güvenilir ve detaylı rapor." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/og-image.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <meta name="theme-color" content="#000000" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Tailwind theme extension (primary kırmızı)
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#E11D2D', // kırmızı
+              dark: '#B4161B'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+  <header class="bg-black text-white">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <!-- Inline SVG logo -->
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-white" aria-hidden="true">
+          <rect width="24" height="24" rx="4" fill="#E11D2D"/>
+          <path d="M6 16V8h2l2 4 2-8 2 12h2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-semibold text-lg">ADL EKSPER</span>
+      </a>
+      <nav class="hidden md:flex gap-6 items-center">
+        <a class="hover:text-brand" href="/">Ana Sayfa</a>
+        <a class="hover:text-brand" href="paketler.html">Paketlerimiz</a>
+        <a class="hover:text-brand" href="hakkimizda.html">Hakkımızda</a>
+        <a class="hover:text-brand" href="subeler.html">Şubelerimiz</a>
+        <a class="hover:text-brand" href="iletisim.html">İletişim</a>
+        <a class="ml-4 px-4 py-2 bg-brand text-white rounded-md" href="/admin">Admin</a>
+      </nav>
+
+      <button id="mobile-toggle" class="md:hidden p-2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M4 6h16M4 12h16M4 18h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-black/95">
+      <div class="px-6 py-4 flex flex-col gap-3">
+        <a href="/" class="text-white">Ana Sayfa</a>
+        <a href="paketler.html" class="text-white">Paketlerimiz</a>
+        <a href="hakkimizda.html" class="text-white">Hakkımızda</a>
+        <a href="subeler.html" class="text-white">Şubelerimiz</a>
+        <a href="iletisim.html" class="text-white">İletişim</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-12">
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-bold leading-tight">ADL EKSPER — Güvenilir Araç Ekspertizi</h1>
+        <p class="mt-4 text-gray-700">Uzman ekibimizle detaylı ekspertiz raporları. Kaporta, motor, arıza tespiti ve airbag kontrolleri. Hızlı, şeffaf ve güvenilir hizmet.</p>
+        <div class="mt-6 flex gap-4">
+          <a href="paketler.html" class="px-6 py-3 bg-brand text-white rounded-md">Paketlerimizi İncele</a>
+          <a href="iletisim.html" class="px-6 py-3 border border-gray-300 rounded-md">Bize Ulaşın</a>
+        </div>
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Araç ekspertiz" class="rounded-lg shadow-lg w-full object-cover" loading="lazy" />
+      </div>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold">Öne Çıkan Paketler</h2>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Example product cards -->
+        <article class="border rounded-lg overflow-hidden shadow-sm">
+          <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Full Paket" class="w-full h-44 object-cover" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold">Full Paket</h3>
+            <p class="mt-2 text-sm text-gray-600">Detaylı kaporta, motor, arıza tespiti ve eksiksiz rapor.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-lg font-bold">7.690 TL</span>
+              <a href="paketler.html" class="px-3 py-1 bg-black text-white rounded text-sm">İncele</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="border rounded-lg overflow-hidden shadow-sm">
+          <img src="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Motor Ekspertizi" class="w-full h-44 object-cover" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold">Motor Ekspertizi</h3>
+            <p class="mt-2 text-sm text-gray-600">Motor performans ve arıza tespiti.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-lg font-bold">2.150 TL</span>
+              <a href="paketler.html" class="px-3 py-1 bg-black text-white rounded text-sm">İncele</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="border rounded-lg overflow-hidden shadow-sm">
+          <img src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Kaporta Boya Ekspertiz" class="w-full h-44 object-cover" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold">Kaporta Boya Ekspertiz</h3>
+            <p class="mt-2 text-sm text-gray-600">Kaporta, boya ve geçmiş hasar kontrolü.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-lg font-bold">2.150 TL</span>
+              <a href="paketler.html" class="px-3 py-1 bg-black text-white rounded text-sm">İncele</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-black text-white mt-12">
+    <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between">
+      <div>
+        <h4 class="font-semibold">ADL EKSPER</h4>
+        <p class="text-sm mt-2 text-gray-300">Güvenilir ve detaylı araç ekspertiz hizmeti.</p>
+      </div>
+      <div class="mt-6 md:mt-0">
+        <h5 class="font-medium">İletişim</h5>
+        <p class="text-sm text-gray-300 mt-2">Telefon: <a href="tel:+905555555555" class="hover:text-brand">+90 555 555 55 55</a></p>
+        <p class="text-sm text-gray-300">E-posta: <a href="mailto:info@adlekspersite.com" class="hover:text-brand">info@adlekspersite.com</a></p>
+      </div>
+    </div>
+    <div class="text-center text-gray-400 py-4 text-sm">© <span id="year"></span> ADL EKSPER — Tüm hakları saklıdır.</div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-toggle').addEventListener('click', function () {
+      const m = document.getElementById('mobile-menu');
+      m.classList.toggle('hidden');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
