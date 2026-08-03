@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sepetim — ADL EKSPER</title>
+  <meta name="description" content="ADL EKSPER sepetiniz" />
+  <link rel="icon" href="assets/favicon.svg" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-900">
+  <header class="bg-black text-white">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="font-semibold">ADL EKSPER</a>
+      <div class="text-xs text-gray-300">Usta: <span class="text-white font-medium">Cemil Adalı</span></div>
+    </div>
+  </header>
+
+  <main class="container mx-auto px-6 py-12">
+    <h1 class="text-2xl font-bold mb-6">Sepetim</h1>
+    <div id="cart-items" class="space-y-4">
+      <!-- items injected by JS -->
+    </div>
+    <div class="mt-6">
+      <button id="clear-cart" class="px-4 py-2 bg-red-600 text-white rounded">Sepeti Temizle</button>
+    </div>
+  </main>
+
+  <script>
+    function renderCart(){ const c = JSON.parse(localStorage.getItem('adl_cart')||'[]'); const container = document.getElementById('cart-items'); container.innerHTML=''; if(c.length===0){ container.innerHTML='<p>Sepetiniz boş.</p>'; return; } c.forEach((p,idx)=>{ const el = document.createElement('div'); el.className='p-4 border rounded flex justify-between items-center'; el.innerHTML=`<div><div class="font-semibold">${p.name}</div><div class="text-sm text-gray-600">${p.price||''}</div></div><div><button data-idx="${idx}" class="remove-item px-3 py-1 border rounded">Kaldır</button></div>`; container.appendChild(el); }); document.querySelectorAll('.remove-item').forEach(b=>b.addEventListener('click', function(){ const idx = +this.dataset.idx; let c = JSON.parse(localStorage.getItem('adl_cart')||'[]'); c.splice(idx,1); localStorage.setItem('adl_cart', JSON.stringify(c)); renderCart(); })); }
+    document.getElementById('clear-cart').addEventListener('click', ()=>{ localStorage.removeItem('adl_cart'); renderCart(); });
+    renderCart();
+  </script>
+</body>
+</html>

@@ -15,39 +15,45 @@
   <meta name="theme-color" content="#000000" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Tailwind theme extension (primary kırmızı)
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              DEFAULT: '#E11D2D', // kırmızı
-              dark: '#B4161B'
-            }
-          }
-        }
-      }
-    }
+    tailwind.config = { theme: { extend: { colors: { brand: { DEFAULT: '#E11D2D' } } } } }
   </script>
 </head>
 <body class="bg-white text-gray-900 antialiased">
   <header class="bg-black text-white">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <!-- Inline SVG logo -->
-        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-white" aria-hidden="true">
-          <rect width="24" height="24" rx="4" fill="#E11D2D"/>
-          <path d="M6 16V8h2l2 4 2-8 2 12h2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="font-semibold text-lg">ADL EKSPER</span>
-      </a>
-      <nav class="hidden md:flex gap-6 items-center">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" class="text-white" aria-hidden="true">
+            <rect width="24" height="24" rx="4" fill="#E11D2D"/>
+            <path d="M6 16V8h2l2 4 2-8 2 12h2" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <div>
+          <a href="/" class="font-semibold text-lg">ADL EKSPER</a>
+          <div class="text-xs text-gray-300">Usta: <span class="text-white font-medium">Cemil Adalı</span></div>
+        </div>
+      </div>
+
+      <div class="flex-1 mx-6 hidden md:flex items-center">
+        <input id="site-search" type="search" placeholder="Ara: araç, paket, motor..." class="w-full rounded-l-md border border-r-0 px-4 py-2 focus:outline-none" />
+        <button id="search-btn" class="px-4 py-2 bg-brand text-white rounded-r-md">Ara</button>
+      </div>
+
+      <nav class="hidden md:flex gap-4 items-center">
         <a class="hover:text-brand" href="/">Ana Sayfa</a>
         <a class="hover:text-brand" href="paketler.html">Paketlerimiz</a>
         <a class="hover:text-brand" href="hakkimizda.html">Hakkımızda</a>
         <a class="hover:text-brand" href="subeler.html">Şubelerimiz</a>
         <a class="hover:text-brand" href="iletisim.html">İletişim</a>
-        <a class="ml-4 px-4 py-2 bg-brand text-white rounded-md" href="/admin">Admin</a>
+        <button id="login-btn" class="ml-2 px-4 py-2 border border-gray-700 rounded text-sm hidden md:inline">Oturum Aç</button>
+        <a href="favorites.html" class="relative px-3" title="Favoriler">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9-6.5C1.5 12.5 3 8 6 6.5 8 5.5 9.5 6 12 8c2.5-2 4  -2.5 6-1.5 3 1.5 4.5 6 3 8.0C19 16.65 12 21 12 21z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span id="fav-count" class="absolute -top-2 -right-1 bg-brand text-white rounded-full text-xs px-1">0</span>
+        </a>
+        <a href="cart.html" class="relative px-3" title="Sepet">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 6h15l-1.5 9h-11z" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span id="cart-count" class="absolute -top-2 -right-1 bg-brand text-white rounded-full text-xs px-1">0</span>
+        </a>
       </nav>
 
       <button id="mobile-toggle" class="md:hidden p-2">
@@ -58,11 +64,17 @@
     </div>
     <div id="mobile-menu" class="hidden md:hidden bg-black/95">
       <div class="px-6 py-4 flex flex-col gap-3">
+        <input id="site-search-mobile" type="search" placeholder="Ara" class="rounded-md px-3 py-2" />
         <a href="/" class="text-white">Ana Sayfa</a>
         <a href="paketler.html" class="text-white">Paketlerimiz</a>
         <a href="hakkimizda.html" class="text-white">Hakkımızda</a>
         <a href="subeler.html" class="text-white">Şubelerimiz</a>
         <a href="iletisim.html" class="text-white">İletişim</a>
+        <div class="flex gap-3 mt-2">
+          <a href="favorites.html" class="text-white">Favoriler</a>
+          <a href="cart.html" class="text-white">Sepet</a>
+          <button id="login-btn-mobile" class="text-white">Oturum Aç</button>
+        </div>
       </div>
     </div>
   </header>
@@ -84,43 +96,53 @@
 
     <section class="mt-12">
       <h2 class="text-2xl font-semibold">Öne Çıkan Paketler</h2>
-      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Example product cards -->
-        <article class="border rounded-lg overflow-hidden shadow-sm">
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-2 gap-6" id="products-grid">
+        <!-- product cards (same as paketler.html items) -->
+        <article class="border rounded-lg overflow-hidden shadow-sm" data-name="Full Paket">
           <img src="assets/cover1.svg" alt="Full Paket" class="w-full h-44 object-cover" loading="lazy" />
           <div class="p-4">
             <h3 class="font-semibold">Full Paket</h3>
             <p class="mt-2 text-sm text-gray-600">Detaylı kaporta, motor, arıza tespiti ve eksiksiz rapor.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">7.690 TL</span>
-              <a href="paketler.html" class="px-3 py-1 bg-black text-white rounded text-sm">İncele</a>
+              <div class="flex gap-2">
+                <button class="add-fav px-3 py-1 rounded border" data-name="Full Paket">❤</button>
+                <button class="add-cart px-3 py-1 bg-black text-white rounded" data-name="Full Paket">Sepete Ekle</button>
+              </div>
             </div>
           </div>
         </article>
 
-        <article class="border rounded-lg overflow-hidden shadow-sm">
-          <img src="assets/cover2.svg" alt="Kaporta + Motor + Arıza" class="w-full h-44 object-cover" loading="lazy" />
-          <div class="p-4">
-            <h3 class="font-semibold">Kaporta Ekspertiz + Motor Ekspertizi + Arıza Tespiti</h3>
-            <p class="mt-2 text-sm text-gray-600">Kombine kontrol, detaylı rapor.</p>
-            <div class="mt-4 flex items-center justify-between">
-              <span class="text-lg font-bold">Fiyat Bilgisi İçin İletişim</span>
-              <a href="paketler.html" class="px-3 py-1 bg-black text-white rounded text-sm">Teklif Al</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="border rounded-lg overflow-hidden shadow-sm">
+        <article class="border rounded-lg overflow-hidden shadow-sm" data-name="Motor Ekspertizi">
           <img src="assets/cover3.svg" alt="Motor Ekspertizi" class="w-full h-44 object-cover" loading="lazy" />
           <div class="p-4">
             <h3 class="font-semibold">Motor Ekspertizi</h3>
             <p class="mt-2 text-sm text-gray-600">Motor performans ve arıza tespiti.</p>
             <div class="mt-4 flex items-center justify-between">
               <span class="text-lg font-bold">2.150 TL</span>
-              <a href="paketler.html" class="px-3 py-1 bg-black text-white rounded text-sm">İncele</a>
+              <div class="flex gap-2">
+                <button class="add-fav px-3 py-1 rounded border" data-name="Motor Ekspertizi">❤</button>
+                <button class="add-cart px-3 py-1 bg-black text-white rounded" data-name="Motor Ekspertizi">Sepete Ekle</button>
+              </div>
             </div>
           </div>
         </article>
+
+        <article class="border rounded-lg overflow-hidden shadow-sm" data-name="Kaporta Boya Ekspertiz">
+          <img src="assets/cover4.svg" alt="Kaporta Boya Ekspertiz" class="w-full h-44 object-cover" loading="lazy" />
+          <div class="p-4">
+            <h3 class="font-semibold">Kaporta Boya Ekspertiz</h3>
+            <p class="mt-2 text-sm text-gray-600">Kaporta, boya ve geçmiş hasar kontrolü.</p>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="text-lg font-bold">2.150 TL</span>
+              <div class="flex gap-2">
+                <button class="add-fav px-3 py-1 rounded border" data-name="Kaporta Boya Ekspertiz">❤</button>
+                <button class="add-cart px-3 py-1 bg-black text-white rounded" data-name="Kaporta Boya Ekspertiz">Sepete Ekle</button>
+              </div>
+            </div>
+          </div>
+        </article>
+
       </div>
     </section>
   </main>
@@ -140,12 +162,47 @@
     <div class="text-center text-gray-400 py-4 text-sm">© <span id="year"></span> ADL EKSPER — Tüm hakları saklıdır.</div>
   </footer>
 
+  <!-- Login Modal -->
+  <div id="login-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center">
+    <div class="bg-white rounded-md p-6 w-full max-w-md">
+      <h3 class="text-xl font-semibold">Oturum Aç</h3>
+      <form id="login-form" class="space-y-4 mt-4">
+        <label class="block"><span class="text-sm">Kullanıcı adı veya e-posta</span><input name="username" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" /></label>
+        <label class="block"><span class="text-sm">Şifre</span><input type="password" name="password" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" /></label>
+        <label class="flex items-center gap-2"><input type="checkbox" name="remember" /> <span class="text-sm">Beni Hatırla</span></label>
+        <div class="flex items-center justify-between">
+          <a href="#" class="text-sm text-brand">Şifremi Unuttum</a>
+          <div class="flex gap-2">
+            <button type="button" id="login-cancel" class="px-4 py-2 border rounded">İptal</button>
+            <button type="submit" class="px-4 py-2 bg-brand text-white rounded">Giriş</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    document.getElementById('mobile-toggle').addEventListener('click', function () {
-      const m = document.getElementById('mobile-menu');
-      m.classList.toggle('hidden');
-    });
-    document.getElementById('year').textContent = new Date().getFullYear();
+    // Mobile menu
+    document.getElementById('mobile-toggle').addEventListener('click', function () { document.getElementById('mobile-menu').classList.toggle('hidden'); });
+
+    // Search propagation: navigate to paketler and prefill
+    document.getElementById('search-btn').addEventListener('click', function () { const q = document.getElementById('site-search').value.trim(); if (!q) { location.href = 'paketler.html'; } else { location.href = 'paketler.html?q=' + encodeURIComponent(q); }});
+    document.getElementById('site-search').addEventListener('keydown', function(e){ if(e.key==='Enter'){ e.preventDefault(); document.getElementById('search-btn').click(); }});
+
+    // Login modal
+    const loginModal = document.getElementById('login-modal');
+    document.getElementById('login-btn')?.addEventListener('click', ()=> loginModal.classList.remove('hidden'));
+    document.getElementById('login-btn-mobile')?.addEventListener('click', ()=> loginModal.classList.remove('hidden'));
+    document.getElementById('login-cancel')?.addEventListener('click', ()=> loginModal.classList.add('hidden'));
+    document.getElementById('login-form')?.addEventListener('submit', function(e){ e.preventDefault(); const form = new FormData(e.target); const user = form.get('username'); if(form.get('remember')) localStorage.setItem('adl_user', user); alert('Giriş başarılı (demo) — Hoşgeldiniz ' + user); loginModal.classList.add('hidden'); });
+
+    // Cart & favorites counters
+    function updateCounts(){ const cart = JSON.parse(localStorage.getItem('adl_cart')||'[]'); const fav = JSON.parse(localStorage.getItem('adl_fav')||'[]'); document.getElementById('cart-count').textContent = cart.length; document.getElementById('fav-count').textContent = fav.length; }
+    updateCounts();
+
+    // Add to cart / fav handlers on this page
+    document.querySelectorAll('.add-cart').forEach(btn=>btn.addEventListener('click', function(){ const name = this.dataset.name; let cart = JSON.parse(localStorage.getItem('adl_cart')||'[]'); cart.push({name, price: null}); localStorage.setItem('adl_cart', JSON.stringify(cart)); updateCounts(); alert(name + ' sepete eklendi (demo)'); }));
+    document.querySelectorAll('.add-fav').forEach(btn=>btn.addEventListener('click', function(){ const name = this.dataset.name; let fav = JSON.parse(localStorage.getItem('adl_fav')||'[]'); if(!fav.includes(name)){ fav.push(name); localStorage.setItem('adl_fav', JSON.stringify(fav)); updateCounts(); alert(name + ' favorilere eklendi (demo)'); } else { alert(name + ' zaten favorilerde'); }}));
   </script>
 </body>
 </html>

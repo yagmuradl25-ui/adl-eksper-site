@@ -7,26 +7,38 @@
   <meta name="description" content="ADL EKSPER paketleri: Full Paket, Motor Ekspertizi, Kaporta Boya, Airbag Kontrolleri ve daha fazlası." />
   <link rel="icon" href="assets/favicon.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = { theme: { extend: { colors: { brand: { DEFAULT: '#E11D2D' } } } } }
-  </script>
+  <script>tailwind.config = { theme: { extend: { colors: { brand: { DEFAULT: '#E11D2D' } } } } }</script>
 </head>
 <body class="bg-white text-gray-900">
   <header class="bg-black text-white">
-    <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-3">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <rect width="24" height="24" rx="4" fill="#E11D2D"/>
-        </svg>
-        <span class="font-semibold">ADL EKSPER</span>
-      </a>
-      <nav class="hidden md:flex gap-6">
+    <div class="container mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-3">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#E11D2D"/></svg>
+        </a>
+        <div>
+          <a href="/" class="font-semibold">ADL EKSPER</a>
+          <div class="text-xs text-gray-300">Usta: <span class="text-white font-medium">Cemil Adalı</span></div>
+        </div>
+      </div>
+
+      <div class="flex-1 mx-6 hidden md:flex items-center">
+        <input id="page-search" type="search" placeholder="Ara paket veya isim..." class="w-full rounded-l-md border border-r-0 px-4 py-2 focus:outline-none" />
+        <button id="page-search-btn" class="px-4 py-2 bg-brand text-white rounded-r-md">Ara</button>
+      </div>
+
+      <nav class="hidden md:flex gap-4">
         <a class="hover:text-brand" href="/">Ana Sayfa</a>
         <a class="hover:text-brand" href="paketler.html">Paketlerimiz</a>
         <a class="hover:text-brand" href="hakkimizda.html">Hakkımızda</a>
         <a class="hover:text-brand" href="subeler.html">Şubelerimiz</a>
         <a class="hover:text-brand" href="iletisim.html">İletişim</a>
+        <a href="favorites.html" class="px-3">❤ <span id="fav-count-top">0</span></a>
+        <a href="cart.html" class="px-3">🛒 <span id="cart-count-top">0</span></a>
+        <button id="login-btn" class="ml-2 px-4 py-2 border border-gray-700 rounded text-sm">Oturum Aç</button>
       </nav>
+
+      <button id="mobile-toggle" class="md:hidden p-2">☰</button>
     </div>
   </header>
 
@@ -34,91 +46,74 @@
     <h1 class="text-3xl font-bold">Paketlerimiz</h1>
     <p class="mt-2 text-gray-600">Profesyonel ekspertiz seçenekleri. İhtiyacınıza uygun paketi seçin.</p>
 
-    <section class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- 1 -->
-      <article class="border rounded-lg shadow-sm overflow-hidden">
-        <img src="assets/cover1.svg" alt="Full Paket" class="w-full h-44 object-cover" loading="lazy"/>
-        <div class="p-4">
-          <h3 class="font-semibold">Full Paket</h3>
-          <p class="mt-2 text-sm text-gray-600">Kaporta ekspertiz, motor ekspertiz, arıza tespiti ve detaylı rapor.</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-lg font-bold">7.690 TL</span>
-            <button class="px-3 py-1 bg-black text-white rounded">Seç</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2 -->
-      <article class="border rounded-lg shadow-sm overflow-hidden">
-        <img src="assets/cover2.svg" alt="Kaporta + Motor + Arıza" class="w-full h-44 object-cover" loading="lazy"/>
-        <div class="p-4">
-          <h3 class="font-semibold">Kaporta Ekspertiz + Motor Ekspertizi + Arıza Tespiti</h3>
-          <p class="mt-2 text-sm text-gray-600">Kombine kontrol, detaylı rapor.</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-lg font-bold">Fiyat Bilgisi İçin İletişim</span>
-            <button class="px-3 py-1 bg-black text-white rounded">Teklif Al</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3 -->
-      <article class="border rounded-lg shadow-sm overflow-hidden">
-        <img src="assets/cover3.svg" alt="Motor Ekspertizi" class="w-full h-44 object-cover" loading="lazy"/>
-        <div class="p-4">
-          <h3 class="font-semibold">Motor Ekspertizi</h3>
-          <p class="mt-2 text-sm text-gray-600">Motor performansı, kaçak, sızıntı ve arıza kontrolü.</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-lg font-bold">2.150 TL</span>
-            <button class="px-3 py-1 bg-black text-white rounded">Seç</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4 -->
-      <article class="border rounded-lg shadow-sm overflow-hidden">
-        <img src="assets/cover4.svg" alt="Kaporta Boya Ekspertiz" class="w-full h-44 object-cover" loading="lazy"/>
-        <div class="p-4">
-          <h3 class="font-semibold">Kaporta Boya Ekspertiz</h3>
-          <p class="mt-2 text-sm text-gray-600">Boya ölçümü, onarım geçmişi kontrolü.</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-lg font-bold">2.150 TL</span>
-            <button class="px-3 py-1 bg-black text-white rounded">Seç</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 5 -->
-      <article class="border rounded-lg shadow-sm overflow-hidden">
-        <img src="assets/cover5.svg" alt="Airbag Kontrol Paketi" class="w-full h-44 object-cover" loading="lazy"/>
-        <div class="p-4">
-          <h3 class="font-semibold">4 ve Üzeri Airbag Kontrol Paketi</h3>
-          <p class="mt-2 text-sm text-gray-600">Airbag sensör ve bağlantı kontrolleri.</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-lg font-bold">2.090 TL</span>
-            <button class="px-3 py-1 bg-black text-white rounded">Seç</button>
-          </div>
-        </div>
-      </article>
-
-      <!-- 6 -->
-      <article class="border rounded-lg shadow-sm overflow-hidden">
-        <img src="assets/cover6.svg" alt="Pikap Motor & Kaporta" class="w-full h-44 object-cover" loading="lazy"/>
-        <div class="p-4">
-          <h3 class="font-semibold">Pikap Motor & Kaporta</h3>
-          <p class="mt-2 text-sm text-gray-600">Pikaplara özel motor ve kaporta ekspertizi.</p>
-          <div class="mt-4 flex items-center justify-between">
-            <span class="text-lg font-bold">3.190 TL</span>
-            <button class="px-3 py-1 bg-black text-white rounded">Seç</button>
-          </div>
-        </div>
-      </article>
+    <section class="mt-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6" id="product-list">
+        <!-- Product template -->
+        <template id="prod-tpl">
+          <article class="border rounded-lg shadow-sm overflow-hidden p-0" data-name="">
+            <img class="w-full h-44 object-cover" alt="">
+            <div class="p-4">
+              <h3 class="font-semibold prod-name"></h3>
+              <p class="mt-2 text-sm text-gray-600 prod-desc"></p>
+              <div class="mt-4 flex items-center justify-between">
+                <span class="text-lg font-bold prod-price"></span>
+                <div class="flex gap-2">
+                  <button class="add-fav px-3 py-1 rounded border">❤</button>
+                  <button class="add-cart px-3 py-1 bg-black text-white rounded">Sepete Ekle</button>
+                </div>
+              </div>
+            </div>
+          </article>
+        </template>
+      </div>
     </section>
   </main>
 
-  <footer class="bg-black text-white py-6 text-center">
-    <div class="container mx-auto">© <span id="year">2026</span> ADL EKSPER</div>
-  </footer>
+  <footer class="bg-black text-white py-6 text-center">© <span id="year">2026</span> ADL EKSPER</footer>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    // Sample products (you can edit these in HTML or load from JSON)
+    const products = [
+      {name:'Full Paket', desc:'Kaporta, motor, arıza tespiti + detaylı rapor.', price:'7.690 TL', img:'assets/cover1.svg'},
+      {name:'Kaporta Ekspertiz + Motor Ekspertizi + Arıza Tespiti', desc:'Kombine kontrol, detaylı rapor.', price:'Fiyat için iletişim', img:'assets/cover2.svg'},
+      {name:'Motor Ekspertizi', desc:'Motor performansı, kaçak, sızıntı ve arıza kontrolü.', price:'2.150 TL', img:'assets/cover3.svg'},
+      {name:'Kaporta Boya Ekspertiz', desc:'Boya ölçümü, onarım geçmişi kontrolü.', price:'2.150 TL', img:'assets/cover4.svg'},
+      {name:'4 ve Üzeri Airbag Kontrol Paketi', desc:'Airbag sensör ve bağlantı kontrolleri.', price:'2.090 TL', img:'assets/cover5.svg'},
+      {name:'Pikap Motor & Kaporta', desc:'Pikaplara özel motor ve kaporta ekspertizi.', price:'3.190 TL', img:'assets/cover6.svg'}
+    ];
+
+    const list = document.getElementById('product-list');
+    const tpl = document.getElementById('prod-tpl');
+
+    function renderProducts(filter=''){
+      list.innerHTML='';
+      products.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase())||p.desc.toLowerCase().includes(filter.toLowerCase())).forEach(p=>{
+        const node = tpl.content.cloneNode(true);
+        const art = node.querySelector('article');
+        art.dataset.name = p.name;
+        node.querySelector('img').src = p.img; node.querySelector('img').alt = p.name;
+        node.querySelector('.prod-name').textContent = p.name;
+        node.querySelector('.prod-desc').textContent = p.desc;
+        node.querySelector('.prod-price').textContent = p.price;
+        node.querySelector('.add-cart').addEventListener('click', ()=>{ let cart = JSON.parse(localStorage.getItem('adl_cart')||'[]'); cart.push(p); localStorage.setItem('adl_cart', JSON.stringify(cart)); updateCounts(); alert(p.name+' sepete eklendi (demo)'); });
+        node.querySelector('.add-fav').addEventListener('click', ()=>{ let fav = JSON.parse(localStorage.getItem('adl_fav')||'[]'); if(!fav.includes(p.name)){ fav.push(p.name); localStorage.setItem('adl_fav', JSON.stringify(fav)); updateCounts(); alert(p.name+' favorilere eklendi (demo)'); } else alert(p.name+' zaten favorilerde'); });
+        list.appendChild(node);
+      });
+    }
+
+    renderProducts();
+
+    document.getElementById('page-search-btn').addEventListener('click', ()=>{ const q=document.getElementById('page-search').value.trim(); renderProducts(q); });
+    document.getElementById('page-search').addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); document.getElementById('page-search-btn').click(); }});
+
+    // login modal simple
+    document.getElementById('login-btn').addEventListener('click', ()=>{ alert('Oturum açma demo — bu statik sitede gerçek kimlik doğrulama yok.'); });
+
+    // counters
+    function updateCounts(){ document.getElementById('cart-count-top').textContent = JSON.parse(localStorage.getItem('adl_cart')||'[]').length; document.getElementById('fav-count-top').textContent = JSON.parse(localStorage.getItem('adl_fav')||'[]').length; }
+    updateCounts();
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

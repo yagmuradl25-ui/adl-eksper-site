@@ -5,13 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>İletişim — ADL EKSPER</title>
   <meta name="description" content="ADL EKSPER iletişim formu ve iletişim bilgileri." />
-  <link rel="icon" href="assets/favicon.ico" />
+  <link rel="icon" href="assets/favicon.svg" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-white text-gray-900">
   <header class="bg-black text-white">
     <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="/" class="font-semibold">ADL EKSPER</a>
+      <div class="flex items-center gap-3">
+        <a href="/" class="font-semibold">ADL EKSPER</a>
+        <div class="text-xs text-gray-300">Usta: <span class="text-white font-medium">Cemil Adalı</span></div>
+      </div>
     </div>
   </header>
 
@@ -21,20 +24,10 @@
 
     <div class="mt-8 grid md:grid-cols-2 gap-8">
       <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4">
-        <label class="block">
-          <span class="text-sm font-medium">Adınız</span>
-          <input name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
-        </label>
-        <label class="block">
-          <span class="text-sm font-medium">E-posta</span>
-          <input type="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" />
-        </label>
-        <label class="block">
-          <span class="text-sm font-medium">Mesaj</span>
-          <textarea name="message" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
-        </label>
+        <label class="block"><span class="text-sm font-medium">Adınız</span><input name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" /></label>
+        <label class="block"><span class="text-sm font-medium">E-posta</span><input type="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" /></label>
+        <label class="block"><span class="text-sm font-medium">Mesaj</span><textarea name="message" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea></label>
         <button type="submit" class="px-4 py-2 bg-brand text-white rounded">Gönder</button>
-        <p class="text-xs text-gray-500">Not: Form gönderimini almak için formspree veya başka bir forms provider kullanın. "your-form-id" kısmını değiştirin.</p>
       </form>
 
       <div>
@@ -45,7 +38,8 @@
         <div class="mt-6">
           <h4 class="font-medium">Çalışma Saatleri</h4>
           <p class="text-sm text-gray-600 mt-2">Hafta içi: 09:00 - 18:00</p>
-          <p class="text-sm text-gray-600">Cumartesi: 10:00 - 15:00</p>
+          <p class="text-sm text-gray-600">Cumartesi: 09:00 - 18:00</p>
+          <p class="text-sm text-gray-600">Pazar: Kapalı</p>
         </div>
       </div>
     </div>
